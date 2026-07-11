@@ -1,14 +1,14 @@
 {
-  "foundry_chat": "unknown",
-  "foundry_multimodal": "unknown",
-  "embedding": "unknown",
-  "search": "unknown",
-  "document_intelligence": "unknown",
+  "foundry_chat": "available",
+  "foundry_multimodal": "available",
+  "embedding": "available",
+  "search": "free",
+  "document_intelligence": "free",
   "content_understanding": "mock",
-  "language": "unknown",
+  "language": "free",
   "speech": "local",
-  "translator": "unknown",
-  "content_safety": "unknown",
-  "image_generation": "unavailable",
-  "video_generation": "unavailable"
+  "translator": "free",
+  "content_safety": "free",
+  "image_generation": "available",
+  "video_generation": "available"
 }
