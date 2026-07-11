@@ -1,0 +1,20 @@
+{
+  "case_id": "C003",
+  "customer": {
+    "name": "Daniel Reed",
+    "email": "daniel.reed@example.invalid"
+  },
+  "product": {
+    "model": "LoopBook 14",
+    "serial_number": null
+  },
+  "purchase_date": "2025-07-12",
+  "issue": "Coffee spilled near the charging port; device no longer starts.",
+  "preferred_language": "en",
+  "postcode": "75011",
+  "attachments": [
+    "C003_invoice.pdf",
+    "C003_liquid_damage_closeup.png",
+    "C003_device_walkaround.mp4"
+  ]
+}

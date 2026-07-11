@@ -1,0 +1,18 @@
+{
+  "source": "C002_receipt_scan_low_contrast.png",
+  "expected": {
+    "merchant_name": {
+      "value": "LoopLine Electronics",
+      "status": "accepted"
+    },
+    "transaction_date": {
+      "value": "2025-11-02",
+      "status": "review"
+    },
+    "serial_number": {
+      "value": "LLB14-B202",
+      "status": "review"
+    }
+  },
+  "rule": "Confidence values may vary; validate status bands and normalized values rather than exact floats."
+}

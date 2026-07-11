@@ -25,6 +25,9 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         extra="ignore",
     )
+    local_data_root: str = "./sample-data"
+    results_root: str = "./results"
+    max_upload_mb: int = 10
 
 
 settings = Settings()

@@ -51,6 +51,39 @@ setting changes what gets constructed underneath.
 - The application never exposes hidden chain-of-thought; it returns short
   evidence-based reasons.
 
+## Evidence ingestion and immutability
+
+Every piece of customer evidence (a receipt, a photo, a voice note) passes
+through `app/ingestion/` before anything else in the system touches it:
+
+1. **`validators.py`** rejects the file if it's oversized, empty, has an
+   unrecognized extension, starts with an executable signature (`MZ`, `ELF`,
+   a shebang), or its content doesn't match its claimed extension — checked
+   by real magic bytes, not the extension alone.
+2. **`hashing.py`** computes a streamed SHA-256 fingerprint of the exact
+   bytes, so any change at all is detectable and the file never needs to be
+   loaded fully into memory.
+3. **`manifest.py`** looks up whether this `(case_id, sha256)` pair has
+   already been recorded. If yes, ingestion is a no-op that returns the
+   existing `evidence_id` — this is what makes re-running ingestion, or a
+   duplicate upload from a flaky client, safe. If no, a permanent ID
+   (`ev-<case>-<sequence>`) is minted and an entry is **appended** to
+   `results/ingestion/manifest.jsonl` — an append-only log; past lines are
+   never rewritten.
+4. **`pipeline.py`** copies (never moves) the original into
+   `results/ingestion/raw/<case_id>/<sha256>/<original_filename>` — the hash
+   is embedded in the storage path itself, so the path alone proves which
+   exact bytes live there, and nothing in later phases can silently
+   overwrite it.
+
+This is the concrete implementation of "raw customer evidence is immutable"
+and "extracted facts preserve source references" from the design rules above:
+every fact any later phase (extraction, vision, RAG) produces can point back
+to an `evidence_id` whose bytes are hash-verified and permanently stored.
+See `docs/adr/004-ingestion-design.md` for the reasoning behind specific
+choices (magic-byte validation instead of a system library, JSONL over a
+rewritten JSON file, local storage instead of deploying Blob yet).
+
 ## Azure footprint (as of Phase 2)
 
 One resource group, `rg-adam.jouaid123-8353` (Sweden Central), holds
@@ -63,7 +96,7 @@ everything this project provisions:
 | Chat/multimodal deployment | `gpt-5-mini` (GlobalStandard) | Deployed |
 | Embedding deployment | `text-embedding-3-large` (Standard) | Deployed |
 | Azure AI Search | `loopline-search-adamj` (Free) | Created |
-| Storage account | `looplineresolvedatadev` | Templated in `infra/main.bicep`, not yet deployed (Phase 4) |
+| Storage account | `looplineresolvedatadev` | Templated in `infra/main.bicep`; core build uses local storage instead (see ADR 004) |
 | Document Intelligence, Language, Content Safety, Translator | — | F0 confirmed available, not yet created (deferred to their phases) |
 
 See `docs/adr/002-service-selection.md` for the reasoning behind each choice,
