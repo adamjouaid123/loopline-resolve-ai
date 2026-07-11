@@ -11,3 +11,7 @@ class DocumentProvider(Protocol):
 
 class SearchProvider(Protocol):
     def search(self, query: str, top_k: int) -> list[dict]: ...
+
+
+class VisionProvider(Protocol):
+    def analyze(self, path: str, schema: dict) -> dict: ...

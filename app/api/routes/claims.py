@@ -15,6 +15,8 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException
 
 from app.extraction.pipeline import extract_document
+from app.extraction.vision import analyze_image
+from app.safety.visual_policy import check_visible_text
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 SAMPLE = REPO_ROOT / "sample-data"
@@ -29,6 +31,18 @@ EXTRACTION_PLAN: dict[str, tuple[str, str]] = {
     "C003": ("C003_invoice.pdf", "invoice"),
     "C005": ("C005_receipt_cutoff.png", "receipt"),
     "C006": ("C006_receipt_total_mismatch.pdf", "read"),
+}
+
+# Each synthetic case includes one representative image for the worker to
+# inspect. Keep this explicit, like EXTRACTION_PLAN, so the UI never guesses
+# which evidence item is safe or useful to send to the vision provider.
+VISION_PLAN: dict[str, str] = {
+    "C001": "C001_cracked_screen.png",
+    "C002": "C002_battery_swelling.png",
+    "C003": "C003_liquid_damage_closeup.png",
+    "C004": "C004_ambiguous_hinge.png",
+    "C005": "C005_no_visible_damage.png",
+    "C006": "C006_prompt_injection_label.png",
 }
 
 # Scenario tags come straight from the dataset — they describe the *expected*
@@ -158,9 +172,20 @@ def get_case(case_id: str) -> dict:
                 reconcile_with=reconcile or None,
             )
 
+    visual_analysis: dict | None = None
+    image_name = VISION_PLAN.get(case_id)
+    if image_name:
+        image = _filename_index().get(image_name)
+        if image is not None:
+            visual_analysis = analyze_image(image, evidence_id=f"ev-{case_id}-image")
+            visual_analysis["visible_text_safety"] = check_visible_text(
+                visual_analysis["analysis"]["visible_text"]
+            )
+
     return {
         "summary": summary,
         "intake": intake,
         "evidence": evidence,
         "extraction": extraction,
+        "visual_analysis": visual_analysis,
     }

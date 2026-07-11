@@ -51,11 +51,41 @@ export interface ExtractionResult {
   fields: Record<string, ExtractionField>;
 }
 
+export interface VisualObservation {
+  component: string;
+  observation: string;
+  confidence: number;
+}
+
+export interface VisualAnalysisResult {
+  evidence_id: string;
+  provider: string;
+  is_simulated: boolean;
+  service: string;
+  model_or_operation: string;
+  analysis: {
+    caption: string;
+    alt_text: string;
+    observations: VisualObservation[];
+    regions: string[];
+    visible_text: string[];
+    needs_more_evidence: boolean;
+    damage_visible: boolean;
+    affected_component: string | null;
+    serial_visible: boolean;
+  };
+  visible_text_safety: {
+    injection_detected: boolean;
+    matched_text: string[];
+  };
+}
+
 export interface CaseDetail {
   summary: CaseSummary;
   intake: Record<string, unknown> | null;
   evidence: EvidenceItem[];
   extraction: ExtractionResult | null;
+  visual_analysis: VisualAnalysisResult | null;
 }
 
 async function getJSON<T>(url: string): Promise<T> {

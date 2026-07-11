@@ -243,6 +243,19 @@ button {
   margin-left: auto;
 }
 
+.notice {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.notice-danger {
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
+  background: var(--danger-soft);
+  color: var(--text);
+}
+
 .sidebar-foot {
   margin-top: auto;
   padding: 12px 10px 4px;

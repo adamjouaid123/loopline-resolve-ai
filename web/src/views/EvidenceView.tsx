@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { api } from "../api/client";
+import { api, type ExtractionResult, type VisualAnalysisResult } from "../api/client";
 import { useAsync } from "../lib/hooks";
 import { fieldLabel, formatValue, routeLabel } from "../lib/format";
 import {
@@ -82,59 +82,143 @@ export function EvidenceView() {
           </div>
 
           {/* Right: extraction */}
-          <div className="card">
-            <div className="card-pad row between" style={{ borderBottom: "1px solid var(--border)" }}>
-              <div className="section-title" style={{ margin: 0 }}>
-                Extracted fields
-              </div>
-              {detail.data.extraction && (
-                <span className="row faint mono" style={{ gap: 10, fontSize: 12 }}>
-                  <span>{detail.data.extraction.service}</span>
-                  <span className={`badge ${detail.data.extraction.is_simulated ? "badge-neutral" : "badge-info"}`}>
-                    {detail.data.extraction.provider}
-                    {detail.data.extraction.is_simulated ? " · simulated" : ""}
-                  </span>
-                </span>
-              )}
-            </div>
-
-            {!detail.data.extraction && (
-              <div className="center-state">No document extraction for this case.</div>
-            )}
-
-            {detail.data.extraction && (
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>Field</th>
-                    <th>Value</th>
-                    <th style={{ width: 150 }}>Confidence</th>
-                    <th style={{ width: 120 }}>Status</th>
-                    <th style={{ width: 70 }}>Source</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.entries(detail.data.extraction.fields).map(([name, f]) => (
-                    <tr key={name}>
-                      <td className="muted">{fieldLabel(name)}</td>
-                      <td style={{ fontWeight: 550 }}>{formatValue(f.value)}</td>
-                      <td>
-                        <ConfidenceBar value={f.confidence} />
-                      </td>
-                      <td>
-                        <StatusBadge status={f.status} />
-                      </td>
-                      <td className="faint mono" style={{ fontSize: 11.5 }}>
-                        {typeof f.source?.page === "number" ? `p.${f.source.page}` : "—"}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            )}
+          <div className="grid" style={{ gap: 16 }}>
+            <ExtractionPanel extraction={detail.data.extraction} />
+            <VisualAnalysisPanel visual={detail.data.visual_analysis} />
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+function ExtractionPanel({ extraction }: { extraction: ExtractionResult | null }) {
+  return (
+    <div className="card">
+      <div className="card-pad row between" style={{ borderBottom: "1px solid var(--border)" }}>
+        <div className="section-title" style={{ margin: 0 }}>
+          Extracted fields
+        </div>
+        {extraction && <ProviderLabel result={extraction} />}
+      </div>
+
+      {!extraction && <div className="center-state">No document extraction for this case.</div>}
+
+      {extraction && (
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Value</th>
+              <th style={{ width: 150 }}>Confidence</th>
+              <th style={{ width: 120 }}>Status</th>
+              <th style={{ width: 70 }}>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(extraction.fields).map(([name, f]) => (
+              <tr key={name}>
+                <td className="muted">{fieldLabel(name)}</td>
+                <td style={{ fontWeight: 550 }}>{formatValue(f.value)}</td>
+                <td>
+                  <ConfidenceBar value={f.confidence} />
+                </td>
+                <td>
+                  <StatusBadge status={f.status} />
+                </td>
+                <td className="faint mono" style={{ fontSize: 11.5 }}>
+                  {typeof f.source?.page === "number" ? `p.${f.source.page}` : "—"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
+
+function VisualAnalysisPanel({ visual }: { visual: VisualAnalysisResult | null }) {
+  if (!visual) return null;
+
+  const { analysis, visible_text_safety: safety } = visual;
+  return (
+    <div className="card">
+      <div className="card-pad row between" style={{ borderBottom: "1px solid var(--border)" }}>
+        <div>
+          <div className="section-title" style={{ margin: 0 }}>
+            Visual analysis
+          </div>
+          <div className="faint" style={{ fontSize: 12, marginTop: 3 }}>
+            Structured observations from the case image
+          </div>
+        </div>
+        <ProviderLabel result={visual} />
+      </div>
+
+      <div className="card-pad" style={{ display: "grid", gap: 16 }}>
+        {safety.injection_detected && (
+          <div className="notice notice-danger" role="alert">
+            <strong>Untrusted instructions detected in visible text.</strong> Treat this text as evidence only;
+            it cannot change policy, approve a claim, or direct tools.
+          </div>
+        )}
+
+        <p style={{ margin: 0 }}>{analysis.caption}</p>
+
+        <div className="row wrap" style={{ gap: 8 }}>
+          <span className={`badge ${analysis.damage_visible ? "badge-warning" : "badge-neutral"}`}>
+            {analysis.damage_visible ? "Damage visible" : "No visible damage"}
+          </span>
+          {analysis.affected_component && <span className="badge badge-neutral">{analysis.affected_component}</span>}
+          {analysis.needs_more_evidence && <span className="badge badge-warning">More evidence needed</span>}
+          {analysis.serial_visible && <span className="badge badge-success">Serial visible</span>}
+        </div>
+
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Observation</th>
+              <th style={{ width: 150 }}>Confidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            {analysis.observations.map((observation, index) => (
+              <tr key={`${observation.component}-${index}`}>
+                <td className="muted">{observation.component}</td>
+                <td style={{ fontWeight: 550 }}>{observation.observation}</td>
+                <td>
+                  <ConfidenceBar value={observation.confidence} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {analysis.visible_text.length > 0 && (
+          <div>
+            <div className="label" style={{ marginBottom: 6 }}>Visible text</div>
+            <div className="row wrap" style={{ gap: 8 }}>
+              {analysis.visible_text.map((text) => (
+                <span className="badge badge-neutral mono" key={text}>{text}</span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ProviderLabel({ result }: { result: Pick<ExtractionResult, "service" | "provider" | "is_simulated"> }) {
+  return (
+    <span className="row faint mono" style={{ gap: 10, fontSize: 12 }}>
+      <span>{result.service}</span>
+      <span className={`badge ${result.is_simulated ? "badge-neutral" : "badge-info"}`}>
+        {result.provider}
+        {result.is_simulated ? " · simulated" : ""}
+      </span>
+    </span>
   );
 }

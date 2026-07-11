@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Visual analysis result",
+  "type": "object",
+  "properties": {
+    "caption": { "type": "string" },
+    "alt_text": { "type": "string" },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "component": { "type": "string" },
+          "observation": { "type": "string" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "required": ["component", "observation", "confidence"],
+        "additionalProperties": false
+      }
+    },
+    "regions": { "type": "array", "items": { "type": "string" } },
+    "visible_text": { "type": "array", "items": { "type": "string" } },
+    "needs_more_evidence": { "type": "boolean" },
+    "damage_visible": { "type": "boolean" },
+    "affected_component": { "type": ["string", "null"] },
+    "serial_visible": { "type": "boolean" }
+  },
+  "required": [
+    "caption", "alt_text", "observations", "regions", "visible_text",
+    "needs_more_evidence", "damage_visible", "affected_component", "serial_visible"
+  ],
+  "additionalProperties": false
+}
