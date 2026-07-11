@@ -84,6 +84,52 @@ See `docs/adr/004-ingestion-design.md` for the reasoning behind specific
 choices (magic-byte validation instead of a system library, JSONL over a
 rewritten JSON file, local storage instead of deploying Blob yet).
 
+## Information extraction
+
+`app/extraction/pipeline.py` calls one of two providers behind the same
+`analyze(path, operation) -> dict` shape (`app/providers/azure/documents.py`
+using real Document Intelligence prebuilt models, or
+`app/providers/mock/documents.py` returning the dataset's own ground truth),
+normalizes either shape into a flat `{field: {value, confidence, source}}`
+structure, applies the confidence-band policy, and overrides status to
+`"conflict"` when a field disagrees with the claim's own form data. Real
+example, `documents/C001_receipt.pdf` against the live Document Intelligence
+resource (`prebuilt-receipt`), reconciled against the claim form's
+`serial_number: "NPX1-A101"`:
+
+```json
+{
+  "serial_number": {
+    "value": "NPX1-A101",
+    "confidence": 0.99,
+    "source": {},
+    "status": "accepted"
+  },
+  "total": {
+    "value": 429.0,
+    "confidence": 0.984,
+    "source": {
+      "page": 1,
+      "polygon": [2.0712, 5.0086, 2.694, 5.0098, 2.6938, 5.1299, 2.071, 5.1288]
+    },
+    "status": "accepted"
+  }
+}
+```
+
+`total` shows a real bounding-box polygon from Document Intelligence's
+prebuilt-receipt model; `serial_number` comes from a regex anchored to the
+document's own `Serial` label rather than Document Intelligence's own field
+set (LoopLine's serial number isn't a standard receipt field). A UI
+screenshot of this same extraction with confidence and source location
+rendered visually is deferred to Phase 14, once the Streamlit UI actually
+displays it — this JSON is the Phase 5 equivalent, straight from a real call
+against the deployed F0 resource.
+
+See `docs/adr/005-document-intelligence-vs-content-understanding.md` for why
+extraction is built on deterministic Document Intelligence rather than
+Content Understanding.
+
 ## Azure footprint (as of Phase 2)
 
 One resource group, `rg-adam.jouaid123-8353` (Sweden Central), holds

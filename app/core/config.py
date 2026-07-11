@@ -28,6 +28,9 @@ class Settings(BaseSettings):
     local_data_root: str = "./sample-data"
     results_root: str = "./results"
     max_upload_mb: int = 10
+    document_intelligence_endpoint: str | None = None
+    document_intelligence_key: str | None = None
+
 
 
 settings = Settings()
