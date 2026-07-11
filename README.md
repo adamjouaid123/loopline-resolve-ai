@@ -71,9 +71,23 @@ source .venv/bin/activate
 uv pip install -e ".[dev]"
 cp .env.example .env   # defaults to APP_PROVIDER_MODE=mock, no secrets required
 pytest -q
-uvicorn app.api.main:app --reload
-streamlit run ui/streamlit_app.py
+uvicorn app.api.main:app --reload   # backend + API on :8000
 ```
+
+## Web UI
+
+A React + TypeScript (Vite) interface lives in [`web/`](web/) — a dark-first
+"refined ops console" with a light theme. Run the backend (above), then:
+
+```bash
+cd web && npm install
+npm run dev            # http://localhost:5173, proxies /api to the backend
+```
+
+The Claim intake and Evidence workspace views are backed by live API endpoints
+reading the synthetic dataset (the Evidence view runs the real Phase 5
+extraction pipeline); the Knowledge, Approval, and Ops views are labeled shells
+until their backends land in later phases. See [`web/README.md`](web/README.md).
 
 ## Sample data
 
