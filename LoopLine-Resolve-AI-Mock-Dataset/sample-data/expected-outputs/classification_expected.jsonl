@@ -1,0 +1,6 @@
+{"case_id": "C001", "risk": "normal", "coverage": "likely_covered", "next_step": "repair", "human_approval_required": true}
+{"case_id": "C002", "risk": "safety_critical", "coverage": "unknown", "next_step": "safety_escalation", "human_approval_required": true}
+{"case_id": "C003", "risk": "normal", "coverage": "likely_excluded", "next_step": "manual_review", "human_approval_required": true}
+{"case_id": "C004", "risk": "normal", "coverage": "unknown", "next_step": "request_information", "human_approval_required": true}
+{"case_id": "C005", "risk": "normal", "coverage": "unknown", "next_step": "request_information", "response_channels": ["text", "audio"], "human_approval_required": true}
+{"case_id": "C006", "risk": "fraud_review", "coverage": "unknown", "next_step": "manual_review", "human_approval_required": true}

@@ -1,0 +1,7 @@
+model_id,display_name,category,replacement_value_eur,repairability_score,supported_language_manuals
+NP-X1,NovaPhone X1,phone,399,7,"en,fr"
+LB14,LoopBook 14,laptop,699,6,"en,fr"
+LBP-2,LoopBuds Pro,earbuds,129,4,"en,fr"
+NP-X1-MINI,NovaPhone X1 Mini,phone,329,7,en
+LB13,LoopBook 13,laptop,599,5,en
+LBP-1,LoopBuds,earbuds,89,3,en

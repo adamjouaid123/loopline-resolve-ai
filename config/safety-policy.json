@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "note": "Placeholder — safety rules defined in Phase 11.",
+  "prompt_shield_enabled": false,
+  "moderation_enabled": false,
+  "pii_redaction_enabled": false,
+  "blocklists": []
+}

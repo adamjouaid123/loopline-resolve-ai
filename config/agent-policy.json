@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "note": "Placeholder — agent/tool routing rules defined in Phase 10.",
+  "max_steps": 6,
+  "financial_actions_require_approval": true,
+  "safety_escalation_can_be_downgraded": false
+}

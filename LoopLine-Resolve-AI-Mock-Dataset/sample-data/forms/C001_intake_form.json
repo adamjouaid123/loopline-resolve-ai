@@ -1,0 +1,20 @@
+{
+  "case_id": "C001",
+  "customer": {
+    "name": "Maya Haddad",
+    "email": "maya.haddad@example.invalid"
+  },
+  "product": {
+    "model": "NovaPhone X1",
+    "serial_number": "NPX1-A101"
+  },
+  "purchase_date": "2025-09-08",
+  "issue": "Cracked screen after an accidental drop",
+  "preferred_language": "en",
+  "postcode": "38000",
+  "attachments": [
+    "C001_receipt.pdf",
+    "C001_cracked_screen.png",
+    "C001_customer_message_en.txt"
+  ]
+}

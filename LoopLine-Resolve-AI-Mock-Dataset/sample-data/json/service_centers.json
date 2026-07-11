@@ -1,0 +1,50 @@
+{
+  "centers": [
+    {
+      "id": "SC-GRE-01",
+      "city": "Grenoble",
+      "postcode_prefixes": [
+        "38"
+      ],
+      "capabilities": [
+        "display",
+        "mechanical",
+        "audio"
+      ],
+      "battery_handling": false
+    },
+    {
+      "id": "SC-LYO-02",
+      "city": "Lyon",
+      "postcode_prefixes": [
+        "69",
+        "01"
+      ],
+      "capabilities": [
+        "display",
+        "mechanical",
+        "audio",
+        "battery"
+      ],
+      "battery_handling": true
+    },
+    {
+      "id": "SC-PAR-03",
+      "city": "Paris",
+      "postcode_prefixes": [
+        "75",
+        "92",
+        "93",
+        "94"
+      ],
+      "capabilities": [
+        "display",
+        "mechanical",
+        "audio",
+        "battery",
+        "liquid-diagnostic"
+      ],
+      "battery_handling": true
+    }
+  ]
+}

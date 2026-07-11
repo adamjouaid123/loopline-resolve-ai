@@ -1,0 +1,7 @@
+serial_number,model_id,purchase_date,coverage_type,expiry_date,status
+NPX1-A101,NP-X1,2025-09-08,standard+accidental,2026-09-08,active
+LLB14-B202,LB14,2025-11-02,standard,2026-11-02,active
+LLB14-C303,LB14,2025-07-12,standard,2026-07-12,active
+LLB14-D404,LB14,2026-02-03,standard,2027-02-03,active
+LBP2-505,LBP-2,2026-01-15,standard,2027-01-15,active
+LLB14-F606,LB14,2024-01-03,standard,2025-01-03,expired

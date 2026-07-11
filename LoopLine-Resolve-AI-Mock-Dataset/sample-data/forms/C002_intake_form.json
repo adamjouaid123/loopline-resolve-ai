@@ -1,0 +1,22 @@
+{
+  "case_id": "C002",
+  "customer": {
+    "name": "Léa Morel",
+    "email": "lea.morel@example.invalid",
+    "phone": "+33 6 00 00 02 02"
+  },
+  "product": {
+    "model": "LoopBook 14",
+    "serial_number": "LLB14-B202"
+  },
+  "purchase_date": "2025-11-02",
+  "issue": "La batterie semble gonflée et le trackpad se soulève.",
+  "preferred_language": "fr",
+  "postcode": "69003",
+  "attachments": [
+    "C002_receipt_scan_low_contrast.png",
+    "C002_battery_swelling.png",
+    "C002_customer_message_fr.txt",
+    "C002_voice_note_fr.wav"
+  ]
+}

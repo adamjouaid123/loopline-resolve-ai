@@ -1,0 +1,2 @@
+{"case_id": "C002", "source": "C002_voice_note_fr.wav", "language": "fr-FR", "required_phrases": ["trackpad", "relevé", "débranché", "chaud"], "normalized_reference": "Bonjour le dessous de mon LoopBook est bombé et le trackpad s'est relevé depuis ce matin je l'ai débranché il était chaud après la charge que dois-je faire"}
+{"case_id": "C005", "source": "C005_voice_note_en.wav", "language": "en-GB", "required_phrases": ["left earbud", "press it into the case", "indicator flashes", "audio and text"]}

@@ -1,0 +1,6 @@
+part_code,description,compatible_models,quantity,unit_cost_eur,restricted_capability
+NPX1-DISP-01,NovaPhone X1 display assembly,NP-X1,7,82,display
+NPX1-BAT-02,NovaPhone X1 battery,NP-X1,4,38,battery
+LB14-BAT-03,LoopBook 14 battery,LB14,0,74,battery
+LB14-HNG-02,LoopBook 14 hinge kit,LB14,3,49,mechanical
+LBP2-CASE-01,LoopBuds Pro charging case,LBP-2,5,31,audio

@@ -1,0 +1,32 @@
+{
+  "queries": [
+    {
+      "id": "Q01",
+      "query": "What should happen if a laptop battery appears swollen?",
+      "language": "en",
+      "product": "LoopBook 14"
+    },
+    {
+      "id": "Q02",
+      "query": "Une batterie gonflée peut-elle être envoyée par la poste ?",
+      "language": "fr",
+      "product": "LoopBook 14"
+    },
+    {
+      "id": "Q03",
+      "query": "When is a refund above 300 euros allowed?",
+      "language": "en"
+    },
+    {
+      "id": "Q04",
+      "query": "What evidence is needed for an ambiguous hinge claim?",
+      "language": "en",
+      "product": "LoopBook 14"
+    },
+    {
+      "id": "Q05",
+      "query": "Does LoopLine cover theft outside the European Union?",
+      "language": "en"
+    }
+  ]
+}

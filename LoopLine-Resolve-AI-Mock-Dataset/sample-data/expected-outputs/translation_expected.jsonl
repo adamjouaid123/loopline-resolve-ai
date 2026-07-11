@@ -1,0 +1,2 @@
+{"case_id": "C002", "source": "C002_customer_message_fr.txt", "direction": "fr-en", "required_meaning_units": ["battery appears swollen", "trackpad is lifting", "device is warm", "customer does not want to ship without instructions"], "forbidden_loss": ["safety condition", "negation"]}
+{"case_id": "C004", "source": "C004_customer_message_mixed_language.txt", "direction": "mixed-en", "required_meaning_units": ["left hinge clicked", "cause unknown", "customer can send more photos", "asks about warranty"]}

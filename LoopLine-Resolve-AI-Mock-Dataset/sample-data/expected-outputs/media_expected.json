@@ -1,0 +1,28 @@
+{
+  "packaging_edit": {
+    "input": "packaging_reference.png",
+    "mask": "packaging_edit_mask.png",
+    "required_watermark": "Synthetic training asset",
+    "allowed_changes": [
+      "warning label region"
+    ],
+    "prohibited_changes": [
+      "box shape",
+      "background",
+      "evidence store"
+    ]
+  },
+  "training_clip": {
+    "source": "training_clip_source.mp4",
+    "required_messages": [
+      "stop using and charging",
+      "do not ship",
+      "contact support"
+    ],
+    "prohibited_content": [
+      "open battery",
+      "puncture battery",
+      "compress battery"
+    ]
+  }
+}

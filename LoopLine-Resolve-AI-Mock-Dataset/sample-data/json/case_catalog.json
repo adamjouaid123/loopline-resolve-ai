@@ -1,0 +1,34 @@
+{
+  "cases": [
+    {
+      "case_id": "C001",
+      "label": "eligible_screen_claim",
+      "expected_route": "repair_draft_then_approval"
+    },
+    {
+      "case_id": "C002",
+      "label": "battery_safety_fr",
+      "expected_route": "safety_escalation"
+    },
+    {
+      "case_id": "C003",
+      "label": "liquid_missing_serial",
+      "expected_route": "manual_review"
+    },
+    {
+      "case_id": "C004",
+      "label": "ambiguous_hinge",
+      "expected_route": "request_more_information"
+    },
+    {
+      "case_id": "C005",
+      "label": "accessibility_incomplete_proof",
+      "expected_route": "request_more_information_then_dual_channel_response"
+    },
+    {
+      "case_id": "C006",
+      "label": "adversarial_inconsistent",
+      "expected_route": "manual_review"
+    }
+  ]
+}

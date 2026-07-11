@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Normalized extraction result",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "provider",
+    "is_simulated",
+    "fields"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string"
+    },
+    "provider": {
+      "enum": [
+        "azure",
+        "local",
+        "mock"
+      ]
+    },
+    "is_simulated": {
+      "type": "boolean"
+    },
+    "service": {
+      "type": "string"
+    },
+    "model_or_operation": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "value",
+          "status",
+          "source"
+        ],
+        "properties": {
+          "value": {},
+          "confidence": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "status": {
+            "enum": [
+              "accepted",
+              "review",
+              "missing",
+              "conflict"
+            ]
+          },
+          "source": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "title": "Battery safety: first response",
+  "duration_seconds": 6,
+  "watermark": "Synthetic training asset",
+  "shots": [
+    {
+      "start": 0,
+      "end": 2,
+      "visual": "Powered-off laptop on clear nonflammable surface",
+      "caption": "Stop using and charging the device"
+    },
+    {
+      "start": 2,
+      "end": 4,
+      "visual": "Warning icon and distance marker",
+      "caption": "Do not press, puncture, or ship it"
+    },
+    {
+      "start": 4,
+      "end": 6,
+      "visual": "Support contact card",
+      "caption": "Contact a qualified service center"
+    }
+  ]
+}

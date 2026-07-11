@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "note": "Placeholder — chunking/retrieval parameters defined in Phase 8.",
+  "chunk_size_tokens": null,
+  "chunk_overlap_tokens": null,
+  "top_k": 8,
+  "hybrid_search": true
+}

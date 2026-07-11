@@ -1,0 +1,8 @@
+{
+  "case_id": "C003",
+  "form_serial": null,
+  "invoice_serial": "LLB14-C303",
+  "customer_followup_serial": "LLB14-C330",
+  "expected_action": "manual_review",
+  "reason": "Two non-null sources disagree after invoice recovery"
+}

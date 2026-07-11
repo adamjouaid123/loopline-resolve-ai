@@ -1,0 +1,6 @@
+issue_code,model_id,repair_name,labor_eur,parts_eur,estimated_total_eur
+screen_crack,NP-X1,Display replacement,55,82,137
+battery_swelling,LB14,Battery isolation and replacement,95,74,169
+hinge_damage,LB14,Hinge kit replacement,90,49,139
+liquid_diagnostic,LB14,Liquid-damage diagnostic,80,0,80
+charging_case,LBP-2,Charging-case replacement,20,31,51

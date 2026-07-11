@@ -1,0 +1,19 @@
+{
+  "case_id": "C004",
+  "customer": {
+    "name": "Samira Fontaine",
+    "email": "samira.fontaine@example.invalid"
+  },
+  "product": {
+    "model": "LoopBook 14",
+    "serial_number": "LLB14-D404"
+  },
+  "purchase_date": "2026-02-03",
+  "issue": "The left hinge separated while opening the lid; cause is unclear.",
+  "preferred_language": "fr",
+  "postcode": "38100",
+  "attachments": [
+    "C004_ambiguous_hinge.png",
+    "C004_customer_message_mixed_language.txt"
+  ]
+}

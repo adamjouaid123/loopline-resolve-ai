@@ -1,0 +1,14 @@
+{
+  "foundry_chat": "unknown",
+  "foundry_multimodal": "unknown",
+  "embedding": "unknown",
+  "search": "unknown",
+  "document_intelligence": "unknown",
+  "content_understanding": "mock",
+  "language": "unknown",
+  "speech": "local",
+  "translator": "unknown",
+  "content_safety": "unknown",
+  "image_generation": "unavailable",
+  "video_generation": "unavailable"
+}

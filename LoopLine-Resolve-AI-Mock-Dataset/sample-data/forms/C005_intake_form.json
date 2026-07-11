@@ -1,0 +1,21 @@
+{
+  "case_id": "C005",
+  "customer": {
+    "name": "Noah Bernard",
+    "email": "noah.bernard@example.invalid"
+  },
+  "product": {
+    "model": "LoopBuds Pro",
+    "serial_number": "LBP2-505"
+  },
+  "purchase_date": "2026-01-15",
+  "issue": "Earbuds intermittently fail to charge and sometimes do not power on.",
+  "preferred_language": "en",
+  "postcode": "38000",
+  "attachments": [
+    "C005_receipt_cutoff.png",
+    "C005_no_visible_damage.png",
+    "C005_voice_note_en.wav",
+    "C005_accessibility_preferences.json"
+  ]
+}

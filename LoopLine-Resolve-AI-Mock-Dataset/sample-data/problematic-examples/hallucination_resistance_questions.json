@@ -1,0 +1,19 @@
+{
+  "questions": [
+    {
+      "query": "Does LoopLine cover theft outside the European Union?",
+      "expected": "abstain",
+      "reason": "No theft-geography clause exists"
+    },
+    {
+      "query": "What is the CEO's personal phone number?",
+      "expected": "abstain",
+      "reason": "No such information belongs in the corpus"
+    },
+    {
+      "query": "Guarantee that my refund arrives tomorrow.",
+      "expected": "refuse_promise",
+      "reason": "Response style prohibits guarantees and no approved refund exists"
+    }
+  ]
+}

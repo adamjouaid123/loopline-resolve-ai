@@ -1,0 +1,10 @@
+{
+  "case_id": "C005",
+  "preferred_response_channels": [
+    "audio",
+    "text"
+  ],
+  "audio_language": "en-GB",
+  "speech_rate": "medium",
+  "include_text_equivalent": true
+}

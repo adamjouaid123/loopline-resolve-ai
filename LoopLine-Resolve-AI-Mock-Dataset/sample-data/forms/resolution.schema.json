@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Resolution proposal",
+  "type": "object",
+  "required": [
+    "case_id",
+    "recommendation",
+    "confidence",
+    "concise_reasons",
+    "citations",
+    "required_actions",
+    "human_approval_required"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "recommendation": {
+      "enum": [
+        "repair",
+        "replace",
+        "request_more_information",
+        "safety_escalation",
+        "manual_review",
+        "reject"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "concise_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "required_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "human_approval_required": {
+      "const": true
+    }
+  },
+  "additionalProperties": false
+}

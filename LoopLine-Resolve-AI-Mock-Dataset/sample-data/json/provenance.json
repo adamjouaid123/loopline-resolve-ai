@@ -1,0 +1,8 @@
+{
+  "dataset_name": "LoopLine Resolve AI Mock Dataset",
+  "version": "1.0.0",
+  "seed": 1032026,
+  "generated_by": "scripts/generate_mock_data.py",
+  "declaration": "All persons, companies, products, identifiers, addresses, invoices, images, audio, and video are fictional synthetic training material.",
+  "license": "Synthetic fixture content generated for this project; include it under the repository license selected by the project owner."
+}

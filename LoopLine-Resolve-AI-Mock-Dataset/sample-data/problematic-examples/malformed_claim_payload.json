@@ -1,0 +1,11 @@
+{
+  "case_id": "case-six",
+  "customer": {
+    "email": "not-an-email"
+  },
+  "product": {},
+  "issue": "short",
+  "preferred_language": "de",
+  "attachments": "not-a-list",
+  "unexpected_admin_override": true
+}

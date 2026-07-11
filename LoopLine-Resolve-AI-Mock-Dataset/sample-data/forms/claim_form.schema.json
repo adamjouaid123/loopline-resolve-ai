@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.loopline.invalid/claim-form.schema.json",
+  "title": "LoopLine claim form",
+  "type": "object",
+  "required": [
+    "case_id",
+    "customer",
+    "product",
+    "issue",
+    "preferred_language",
+    "attachments"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "pattern": "^C[0-9]{3}$"
+    },
+    "customer": {
+      "type": "object",
+      "required": [
+        "name",
+        "email"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "product": {
+      "type": "object",
+      "required": [
+        "model"
+      ],
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "serial_number": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "purchase_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "issue": {
+      "type": "string",
+      "minLength": 10
+    },
+    "preferred_language": {
+      "enum": [
+        "en",
+        "fr"
+      ]
+    },
+    "postcode": {
+      "type": "string"
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
